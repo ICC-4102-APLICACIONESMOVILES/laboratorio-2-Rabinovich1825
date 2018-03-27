@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
-    <string name="camera">My Application</string>
-    <string name="gallery">My Application</string>
+    <string name="camera">Photo</string>
+    <string name="gallery">Gallery</string>
     <string name="slideshow">My Application</string>
     <string name="tools">My Application</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
