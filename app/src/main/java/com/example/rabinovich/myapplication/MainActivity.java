@@ -1,6 +1,8 @@
 package com.example.rabinovich.myapplication;
 
+import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -9,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.text.Normalizer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,8 +42,18 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
 
                         // Add code here to update the UI based on the item selected
+                        if(menuItem.getItemId() == R.id.nav_form) {
+                            FormFragment fragment = new FormFragment();
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.content_frame, fragment).commit();
+                        }else if (menuItem.getItemId() == R.id.nav_gallery){
+                            BlankFragment blankFragment = new BlankFragment();
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.content_frame, blankFragment).commit();
+                        }
                         // For example, swap UI fragments here
-
                         return true;
                     }
                 });
