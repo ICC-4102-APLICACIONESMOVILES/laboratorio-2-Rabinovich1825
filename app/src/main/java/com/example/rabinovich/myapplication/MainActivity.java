@@ -13,10 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.text.Normalizer;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+    private List<FormFragment> forms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +46,17 @@ public class MainActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         if(menuItem.getItemId() == R.id.nav_form) {
                             FormFragment fragment = new FormFragment();
+                            forms.add(fragment);
                             FragmentManager fragmentManager = getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.content_frame, fragment).commit();
-                        }else if (menuItem.getItemId() == R.id.nav_gallery){
+                        }else if (menuItem.getItemId() == R.id.nav_form_counter){
                             BlankFragment blankFragment = new BlankFragment();
                             FragmentManager fragmentManager = getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.content_frame, blankFragment).commit();
+                        }else if (menuItem.getItemId() == R.id.nav_form_done){
+
                         }
                         // For example, swap UI fragments here
                         return true;

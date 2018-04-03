@@ -6,8 +6,13 @@
             android:icon="@drawable/ic_menu_form"
             android:title="@string/camera" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_form_counter"
+            android:icon="@drawable/ic_menu_counter"
             android:title="@string/gallery" />
+        <item
+            android:id="@+id/nav_form_done"
+            android:icon="@drawable/ic_menu_form_done"
+            android:title="Previous Forms"
+            />
     </group>
 </menu>

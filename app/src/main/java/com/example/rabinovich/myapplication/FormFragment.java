@@ -3,10 +3,15 @@ package com.example.rabinovich.myapplication;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import java.util.List;
 
 
 /**
@@ -58,6 +63,13 @@ public class FormFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState){
+        Spinner spinner = (Spinner) getView().findViewById(R.id.spinner);
+        ArrayAdapter<String> spinnerDataArray = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.spinData));
+        spinner.setAdapter(spinnerDataArray);
     }
 
     @Override
