@@ -1,5 +1,6 @@
 package com.example.rabinovich.myapplication;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -18,7 +19,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
-    private List<FormFragment> forms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         if(menuItem.getItemId() == R.id.nav_form) {
                             FormFragment fragment = new FormFragment();
-                            forms.add(fragment);
                             FragmentManager fragmentManager = getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.replace(R.id.content_frame, fragment).commit();
@@ -96,5 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openLogin(View view){
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
     }
 }
