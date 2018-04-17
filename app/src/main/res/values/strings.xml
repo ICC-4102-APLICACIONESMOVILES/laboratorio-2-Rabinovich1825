@@ -4,6 +4,8 @@
     <string name="gallery">Gallery</string>
     <string name="slideshow">My Application</string>
     <string name="tools">My Application</string>
+    <string name="preference_file_name">preference</string>
+    <string name="email_key">email</string>
 
     <string-array name="spinData">
         <item>Encuesta</item>

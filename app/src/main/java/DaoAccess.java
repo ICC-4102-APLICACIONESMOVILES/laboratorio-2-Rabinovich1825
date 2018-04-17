@@ -1,26 +1,41 @@
+import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
 
 import java.util.List;
 
 /**
- * Created by Rabinovich on 4/3/2018.
+ * Created by Rabinovich on 4/16/2018.
  */
-
 @Dao
 public interface DaoAccess {
 
+    @Query("SELECT * FROM form")
+    List<Form> getAllForms();
+
+    @Query("SELECT * FROM question")
+    List<Question> getAllQuestions();
+
+    @Query("SELECT * FROM answer")
+    List<Answer> getAllAnswers();
+
     @Insert
-    void insertOnlySingleForm(Form form);
+    void insertAllForms(Form... forms);
+
     @Insert
-    void insertMultipleForms(List<Form> formList);
-    @Query ("SELECT * FROM Form WHERE formId = :formId")
-    Form fetchOneMoviesbyMovieId (int formId);
-    @Update
-    void updateMovie (Form form);
+    void insertAllQuestions(Question... questions);
+
+    @Insert
+    void insertAllAnswers(Answer... answers);
+
     @Delete
-    void deleteMovie (Form form);
+    void deleteForm(Form form);
+
+    @Delete
+    void deleteQuestion(Question question);
+
+    @Delete
+    void deleteAnswer(Answer answer);
 }

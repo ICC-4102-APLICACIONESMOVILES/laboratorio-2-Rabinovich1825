@@ -1,6 +1,8 @@
 package com.example.rabinovich.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
@@ -12,16 +14,26 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.Normalizer;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Context context;
     private DrawerLayout drawerLayout;
+    private boolean logedIn;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private TextView userText;
+    private Button logInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -32,6 +44,31 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+        context = getApplicationContext();
+
+        sharedPreferences = context.getSharedPreferences(
+                getString(R.string.preference_file_name), Context.MODE_PRIVATE);
+
+        String email = sharedPreferences.getString("email", "");
+
+        editor = sharedPreferences.edit();
+
+
+        if(email.toString() == "") {
+            logedIn = false;
+        }else logedIn = true;
+
+        userText = (TextView) findViewById(R.id.userText);
+        logInButton = (Button) findViewById(R.id.loginMainButton);
+
+        userText.setText(email);
+
+        if(logedIn){;
+            logInButton.setText("Log out");
+        }else{
+            logInButton.setText("Log in");
+        }
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
@@ -98,7 +135,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLogin(View view){
-        Intent loginIntent = new Intent(this, LoginActivity.class);
-        startActivity(loginIntent);
+        if (logedIn){
+            logInButton = (Button) findViewById(R.id.loginMainButton);
+            logInButton.setText("Log in");
+            userText = (TextView) findViewById(R.id.userText);
+            userText.setText("");
+            editor.putString(getString(R.string.email_key), "").commit();
+            logedIn = false;
+        }else{
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+        }
     }
 }

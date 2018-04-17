@@ -1,4 +1,6 @@
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -10,17 +12,30 @@ import android.support.annotation.NonNull;
 public class Form {
 
     @NonNull
+    @ColumnInfo(name = "id")
     @PrimaryKey (autoGenerate = true)
-    private Integer formId;
+    private Integer id;
 
+    private String name;
+    private String date;
+    private String comentary;
     private String category;
 
     public Form(){
     }
 
-    public Integer getFormId(){return formId;}
-    public void setFormId(Integer formId){this.formId = formId;}
+    public Integer getId(){return id;}
+    public void setId(Integer id){this.id = id;}
 
     public String getCategory(){return category;}
     public void setCategory(String category){this.category = category;}
+
+    public String getName(){return name;}
+    public void setName(String name){this.name = name;}
+
+    public String getDate(){return date;}
+    public void setDate(String date){this.date = date;}
+
+    public String getComentary(){return comentary;}
+    public void setComentary(String comentary){this.comentary = comentary;}
 }
